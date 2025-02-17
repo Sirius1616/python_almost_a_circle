@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """Python module that serve as a blueprint for other models"""
 
 
@@ -18,7 +19,8 @@ class Base:
         if id != None:
             self.id = id
         else:
-            self.__nb_objects += 1
-            self.id = self.__nb_objects
+            Base.__nb_objects += 1
+            self.id = Base.__nb_objects
+
 
     
