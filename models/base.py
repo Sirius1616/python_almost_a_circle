@@ -64,5 +64,8 @@ class Base:
         else:
             return json.loads(json_string)
 
-
+    def create(cls, **dictionary):
+        rect = cls.__name__(id = 0, height = 0, width = 0, x = 0, y = 0)
+        new_rect = rect.update(dictionary)
+        return new_rect
 
