@@ -133,9 +133,55 @@ class Rectangle(Base):
         
         returns: The print of the rectangle
         """
-        shape = ['{}'.format('#'*self.width) for i in range(self.height)]
+        shape = ('\n'.join(' '*self.x + '#'*self.width for i in range(self.height)))
+        for j in range(self.y):
+            print()
+        print(shape)
 
-        return shape
+
+    def __str__(self):
+        """Method for string representation of the created object"""
+
+        return '[Rectangle] {} {}/{} - {}/{}'.format(self.id, self.x, self.y, self.width, self.height)
 
 
+    def update(self, *args, **kwargs):
+        """The following method updates the rectangle with new values
+        
+        
+        Args:
+            args: Takes in variable number of arguments
+        """
+        if args:
+            my_list = ['id', 'width', 'height', 'x', 'y']  # List all the attributes that might be entered as args
 
+            attr_dict = {}  # Empty for dictionary attribute formation
+
+            new_list = [i for i in args]
+
+            for i in range(len(args)):
+                attr_dict[my_list[i]] = new_list[i]
+
+            for key, value in attr_dict.items():
+                self.__setattr__(key, value)
+        else:
+            if kwargs:
+                for key, value in kwargs.items():
+                    self.__setattr__(key, value)
+
+    def to_dictionary(self):
+        """
+        Gets the dictionary representation of the rectangle object
+
+        Returns:
+            a dictionary of attributes and values
+        """
+        return {
+            'id' : self.id,
+            'width' : self.width,
+            'height' : self.height,
+            'x' : self.x,
+            'y' : self.y
+        }
+
+        
